@@ -47,11 +47,12 @@ const Text: React.FC<TextProps> = ({
   size = 'medium',
   children,
   className = '', // default to empty string if no className is passed
+  ...props
 }) => {
   // Combine the calculated className with the custom className passed via props
   const combinedClassName = clsx(getClassName({ variant, size }), className);
 
-  return <div className={combinedClassName}>{children}</div>;
+  return <div className={combinedClassName} {...props}>{children}</div>;
 };
 
 export default Text;

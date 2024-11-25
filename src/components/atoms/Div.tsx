@@ -38,13 +38,13 @@ const getClassName = (variant: DivProps['variant']): string => {
   return className;
 };
 
-const Div: React.FC<DivProps> = ({ variant = 'primary', children, className = '' }) => {
+const Div: React.FC<DivProps> = ({ variant = 'primary', children, className = '', ...props }) => {
   const combinedClassName = clsx(getClassName(variant), className);
 
   // Use the getChildren function to conditionally render the content
   const renderedChildren = getChildren({ children });
 
-  return <div className={combinedClassName}>{renderedChildren}</div>;
+  return <div className={combinedClassName} {...props}>{renderedChildren}</div>;
 };
 
 export default Div;

@@ -1,9 +1,11 @@
 // src/pages/LandingPage.tsx
 import React from 'react';
+import SettingDrawer from '../components/organisms/SettingDrawer';
 
 const LandingPage: React.FC = () => {
   return (
     <div className="landing-page">
+      <SettingDrawer />
       {/* Primary Block */}
       <div className="bg-primary text-lightText dark:bg-darkPrimary dark:text-darkText p-4">
         This is a block with the primary background color and light text.

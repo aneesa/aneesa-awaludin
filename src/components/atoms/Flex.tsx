@@ -1,13 +1,16 @@
 // src/components/atoms/Flex.tsx
 import React from 'react';
 import clsx from 'clsx'; // Import clsx to easily combine class names
+import Div from './Div';
 
 interface FlexProps {
   direction?: 'row' | 'col'; // Direction can be row (default) or column
+  variant?: 'primary' | 'accent' | 'light'; // The variant to define the background style
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'; // Justify content along the main axis
   align?: 'start' | 'center' | 'end' | 'stretch'; // Align items along the cross axis
   wrap?: boolean; // Whether the flex items should wrap
   gap?: 'none' | 'small' | 'medium' | 'large'; // Gap between items
+  onClick?: () => void | undefined;
   children: React.ReactNode;
   className?: string; // Additional custom classes
 }
@@ -102,11 +105,12 @@ const Flex: React.FC<FlexProps> = ({
   gap = 'none',
   children,
   className = '', // default to empty string if no className is passed
+  ...props
 }) => {
   // Combine the calculated className with the custom className passed via props
   const combinedClassName = clsx(getClassName({ direction, justify, align, wrap, gap }), className);
 
-  return <div className={combinedClassName}>{children}</div>;
+  return <Div className={combinedClassName} {...props}>{children}</Div>;
 };
 
 export default Flex;
