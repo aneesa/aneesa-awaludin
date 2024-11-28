@@ -7,24 +7,34 @@ import Button from '../components/atoms/Button';
 import List from '../components/molecules/List';
 import SettingDrawer from '../components/organisms/SettingDrawer';
 import Icon from '../components/atoms/Icon';
+import NavDrawer from '../components/organisms/NavDrawer';
 
 const LIST_ITEMS = [
   { label: 'List Item' },
   { icon: (
       <Icon name="user" />
-    ), label: 'Profile' },
+    ),
+    label: 'Profile',
+    isSelected: true
+  },
   { icon: (
       <Icon name="setting" />
-    ), label: 'Settings' },
+    ),
+    label: 'Settings'
+  },
   { icon: (
       <Icon name="logout" />
-    ), label: 'Logout' }
+    ),
+    label: 'Logout'
+  }
 ];
 
 const Components: React.FC = () => {
-  const [isDisplayDrawer, setIsDisplayDrawer] = useState(false);
+  const [isDisplaySettingDrawer, setIsDisplaySettingDrawer] = useState(false);
+  const [isDisplayNavDrawer, setIsDisplayNavDrawer] = useState(false);
 
-  const toggleDrawer = () => setIsDisplayDrawer((prev) => !prev);
+  const toggleSettingDrawer = () => setIsDisplaySettingDrawer((prev) => !prev);
+  const toggleNavDrawer = () => setIsDisplayNavDrawer((prev) => !prev);
 
   return (
     <Flex direction="col" variant="light" justify="between" align="start" gap="medium" className="components">
@@ -64,11 +74,16 @@ const Components: React.FC = () => {
         <Text size="large">Organisms</Text>
         <Flex direction="col" justify="between" align="start" wrap gap="medium">
           {/* SettingDrawer */}
-          <Button onClick={toggleDrawer}>Display Setting Drawer</Button>
-          {isDisplayDrawer && (
+          <Button onClick={toggleSettingDrawer}>Display Setting Drawer</Button>
+          {isDisplaySettingDrawer && (
             <SettingDrawer />
           )}
           
+          {/* NavDrawer */}
+          <Button onClick={toggleNavDrawer}>Display Nav Drawer</Button>
+          {isDisplayNavDrawer && (
+            <NavDrawer isMobileView />
+          )}
         </Flex>
       </Flex>
     </Flex>

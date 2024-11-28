@@ -45,17 +45,17 @@ const SettingDrawer: React.FC<DrawerProps> = ({ className = '' }) => {
   ];
 
   return (
-    <Div className="relative">
+    <Div className="relative !p-0">
       {/* Drawer (fixed on the right side, sliding in/out) */}
       <Div
         className={clsx(
           'fixed w-42 !p-0 right-0 transform transition-all duration-300 ease-in-out',
           isOpen ? 'translate-x-0' : 'translate-x-full', // Slide in when open
-          'top-1/2 transform -translate-y-1/2', // Vertically center the drawer
+          'top-1/4 transform -translate-y-1/4',
           className // Allow additional custom styling
         )}
       >
-        {/* Trigger Button (fixed on the right side of the drawer, protruding out) */}
+        {/* Trigger Button (fixed on the left side of the drawer, protruding out) */}
         <Button
           onClick={toggleDrawer}
           className="absolute top-0 -left-10 z-50 rounded-none !p-2"
