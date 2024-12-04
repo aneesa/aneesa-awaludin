@@ -20,7 +20,8 @@ const ListItem: React.FC<ListItemProps> = ({ icon, label, onClick, isSelected, c
       align='center'
       gap='medium'
       className={clsx(
-        'border-b border-gray-200 w-full cursor-pointer',
+        'w-full cursor-pointer',
+        isSelected ? 'rounded-l-3xl' : '',
         className
       )}
       variant={isSelected ? 'light' : 'primary'}
