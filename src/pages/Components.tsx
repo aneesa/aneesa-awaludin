@@ -4,6 +4,7 @@ import Div from '../components/atoms/Div';
 import Flex from '../components/atoms/Flex';
 import Text from '../components/atoms/Text';
 import Button from '../components/atoms/Button';
+import Image from '../components/atoms/Image';
 import List from '../components/molecules/List';
 import SettingDrawer from '../components/organisms/SettingDrawer';
 import Icon from '../components/atoms/Icon';
@@ -61,6 +62,18 @@ const Components: React.FC = () => {
 
           {/* Button */}
           <Button onClick={() => console.log('Button onClick')}>Button</Button>
+
+          {/* Image */}
+          <Image
+            src="https://via.placeholder.com/150"
+            alt="Image"
+            className="w-40 h-40"
+          />
+          <Image
+            src="https://via.placeholder.com/150"
+            alt="User Avatar"
+            variant="avatar"
+          />
         </Flex>
       </Flex>
       <Flex direction="col" variant="light"  justify="between" align="start" wrap gap="medium">

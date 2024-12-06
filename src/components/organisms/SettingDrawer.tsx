@@ -49,7 +49,7 @@ const SettingDrawer: React.FC<DrawerProps> = ({ className = '' }) => {
       {/* Drawer (fixed on the right side, sliding in/out) */}
       <Div
         className={clsx(
-          'fixed w-42 !p-0 right-0 transform transition-all duration-300 ease-in-out',
+          'fixed w-42 !p-0 right-0 transform',
           isOpen ? 'translate-x-0' : 'translate-x-full', // Slide in when open
           'top-1/4 transform -translate-y-1/4',
           className // Allow additional custom styling

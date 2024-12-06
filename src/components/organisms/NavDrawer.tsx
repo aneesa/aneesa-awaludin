@@ -3,9 +3,12 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import Div from '../atoms/Div';
 import Flex from '../atoms/Flex';
+import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
+import Image from '../atoms/Image';
 import List from '../molecules/List';
+import AvatarNav from '../../assets/images/Avatar-nav.png';
 
 interface NavDrawerProps {
   isMobileView?: boolean;
@@ -30,7 +33,7 @@ const NavDrawer: React.FC<NavDrawerProps> = ({ isMobileView = false, className =
       <Div
         variant="light"
         className={clsx(
-          'fixed top-0 left-0 w-72 h-full p-4 transform transition-all duration-300 ease-in-out',
+          'fixed top-0 left-0 w-72 h-full p-4',
           isOpen ? 'translate-x-0' : '-translate-x-full',
           !isMobileView ? 'md:translate-x-0 md:block' : '',
           className
@@ -38,10 +41,16 @@ const NavDrawer: React.FC<NavDrawerProps> = ({ isMobileView = false, className =
         aria-hidden={!isOpen} // Make it inaccessible when closed
       >
         <Flex direction="col" className="h-full rounded-3xl shadow-lg">
-          <Div className="h-1/3 !p-0">
-            {/* Add user info, like name or avatar, here */}
-            <Icon name="user" />
-          </Div>
+          <Flex direction="col" justify="center" align="center" gap="medium" className="h-1/3 !p-0">
+            <Image
+              src={AvatarNav}
+              alt="Avatar"
+              variant="avatar"
+            />
+            <Div className="rounded-3xl shadow-2xl">
+              <Text variant="gray">Aneesa Awaludin</Text>
+            </Div>
+          </Flex>
           <Div className="h-2/3 !p-0">
             <List
               items={LIST_ITEMS.map(item => ({

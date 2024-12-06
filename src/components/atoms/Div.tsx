@@ -35,7 +35,7 @@ const getClassName = (variant: DivProps['variant']): string => {
       className += 'bg-primary dark:bg-darkPrimary '; // Default to 'primary' if no variant
   }
 
-  return className;
+  return `transition-all duration-300 ease-in-out ${className}`;
 };
 
 const Div: React.FC<DivProps> = ({ variant = 'primary', children, className = '', ...props }) => {

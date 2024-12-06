@@ -16,14 +16,14 @@ const LandingPage: React.FC = () => {
         {/* This dummy block can be used for visual testing behind the NavDrawer */}
         <Div
           variant="light"
-          className="h-full !p-0 w-0 md:w-72 ml-0 md:-ml-4 transition-all duration-300 ease-in-out">
+          className="h-full !p-0 w-0 md:w-72 ml-0 md:-ml-4">
           *
         </Div>
 
         {/* Main Content - Adjusts depending on screen size */}
         <Div
           variant="light"
-          className="h-full flex-1 !p-0 transition-all duration-300 ease-in-out">
+          className="h-full flex-1 !p-0">
           {/* Content area that pushes right on desktop */}
           Content
         </Div>
