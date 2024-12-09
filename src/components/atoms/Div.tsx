@@ -4,8 +4,10 @@ import clsx from 'clsx'; // Import clsx to easily combine class names
 import Text from './Text';
 
 interface DivProps {
+  id?: string;
   variant?: 'primary' | 'accent' | 'light'; // The variant to define the background style
   children: React.ReactNode; // Content of the div
+  onClick?: () => void | undefined;
   className?: string; // Additional custom class names for extra styling
 }
 

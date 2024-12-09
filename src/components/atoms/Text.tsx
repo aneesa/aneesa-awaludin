@@ -3,8 +3,9 @@ import React from 'react';
 import clsx from 'clsx'; // Import clsx to easily combine class names
 
 interface TextProps {
-  variant?: 'primary' | 'secondary' | 'gray'; // variant is optional, defaults to 'primary'
+  variant?: 'primary' | 'secondary' | 'gray' | 'black'; // variant is optional, defaults to 'primary'
   size?: 'small' | 'medium' | 'large'; // size is optional, defaults to 'medium'
+  align?: 'left' | 'right' | 'center' | 'justify';
   children: React.ReactNode;
   className?: string; // Add className prop
 }
@@ -24,7 +25,10 @@ const getClassName = ({ variant, size }: ClassNameProps): string => {
       className += 'text-secondary dark:text-darkSecondary ';
       break;
     case 'gray':
-      className += 'text-gray-500 ';
+      className += 'text-gray-500 dark:text-gray-50 ';
+      break;
+    case 'black':
+      className += 'text-gray-950 dark:text-gray-50 ';
       break;
     default:
       className += 'text-lightText dark:text-darkText ';

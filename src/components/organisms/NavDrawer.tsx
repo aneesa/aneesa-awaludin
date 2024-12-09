@@ -1,6 +1,8 @@
 // src/components/organisms/NavDrawer.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { content } from '../../content/nav';
+import usePrevious from '../../utils/usePrevious';
 import Div from '../atoms/Div';
 import Flex from '../atoms/Flex';
 import Text from '../atoms/Text';
@@ -13,17 +15,37 @@ import AvatarNav from '../../assets/images/Avatar-nav.png';
 interface NavDrawerProps {
   isMobileView?: boolean;
   className?: string;
+  onSelected?: (selected: string) => void | undefined;
+  updatedSelected?: string;
 }
 
-const LIST_ITEMS = [
-  { id: 'home', icon: <Icon name="home" />, label: 'Home' },
-  { id: 'experience', icon: <Icon name="briefcase" />, label: 'My Experiences' },
-  { id: 'education', icon: <Icon name="academic" />, label: 'My Education' },
-];
+const LIST_ITEMS = content?.navs ? content.navs.map((nav) => ({
+  ...nav,
+  icon: <Icon name={nav.icon} />
+})) : [];
 
-const NavDrawer: React.FC<NavDrawerProps> = ({ isMobileView = false, className = '' }) => {
+const NavDrawer: React.FC<NavDrawerProps> = ({
+  isMobileView = false,
+  className = '',
+  onSelected = undefined,
+  updatedSelected = undefined
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState(LIST_ITEMS[0].id);
+
+  const prevSelected = usePrevious(selected);
+
+  useEffect(() => {
+    if (prevSelected !== selected && updatedSelected !== selected) {
+      onSelected?.(selected);
+    }
+  }, [selected, prevSelected]);
+
+  useEffect(() => {
+    if (updatedSelected) {
+      setSelected(updatedSelected);
+    }
+  }, [updatedSelected]);
 
   const toggleDrawer = () => setIsOpen(prev => !prev);
 
@@ -41,14 +63,21 @@ const NavDrawer: React.FC<NavDrawerProps> = ({ isMobileView = false, className =
         aria-hidden={!isOpen} // Make it inaccessible when closed
       >
         <Flex direction="col" className="h-full rounded-3xl shadow-lg">
-          <Flex direction="col" justify="center" align="center" gap="medium" className="h-1/3 !p-0">
+          <Flex
+            direction="col"
+            justify="center"
+            align="center"
+            gap="medium"
+            className="h-1/3 !p-0">
             <Image
               src={AvatarNav}
               alt="Avatar"
               variant="avatar"
             />
-            <Div className="rounded-3xl shadow-2xl">
-              <Text variant="gray">Aneesa Awaludin</Text>
+            <Div
+              onClick={() => setSelected(LIST_ITEMS[0].id)}
+              className="rounded-3xl shadow-2xl py-2 filter brightness-90 cursor-pointer">
+              <Text variant="gray" className="font-bold uppercase">Aneesa Awaludin</Text>
             </Div>
           </Flex>
           <Div className="h-2/3 !p-0">
