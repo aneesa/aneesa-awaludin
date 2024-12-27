@@ -20,7 +20,7 @@ const Home: React.FC = () => {
         <Text size="large" align="center" className="font-light uppercase">
           {content.greeting}
         </Text>
-        <Text variant="black" align="center" className="font-bold !text-3xl uppercase w-40 md:w-fit">
+        <Text variant="black" weight='bold' align="center" className="!text-3xl uppercase w-40 md:w-fit">
           {content.greetingName}
         </Text>
         <Text align="center" className="max-w-md">{content.selfDescription}</Text>

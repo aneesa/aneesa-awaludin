@@ -5,8 +5,8 @@ import Text from './Text';
 
 interface DivProps {
   id?: string;
-  variant?: 'primary' | 'accent' | 'light'; // The variant to define the background style
-  children: React.ReactNode; // Content of the div
+  variant?: 'primary' | 'accent' | 'light' | 'transparent'; // The variant to define the background style
+  children?: React.ReactNode; // Content of the div
   onClick?: () => void | undefined;
   className?: string; // Additional custom class names for extra styling
 }
@@ -32,6 +32,9 @@ const getClassName = (variant: DivProps['variant']): string => {
       break;
     case 'light':
       className += 'bg-backgroundLight dark:bg-backgroundDark ';
+      break;
+    case 'transparent':
+      className += 'bg-transparent';
       break;
     default:
       className += 'bg-primary dark:bg-darkPrimary '; // Default to 'primary' if no variant

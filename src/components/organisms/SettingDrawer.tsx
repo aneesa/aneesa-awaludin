@@ -31,6 +31,11 @@ const SettingDrawer: React.FC<DrawerProps> = ({ className = '' }) => {
     setDarkMode(initialDarkMode);
   }, []);
 
+  const onSettingSelected = (setSetting: () => void) => {
+    setSetting();
+    toggleDrawer();
+  };
+
   // Get settings options, dynamically change the icon and label based on dark mode state
   const getSettings = () => [
     {
@@ -40,7 +45,7 @@ const SettingDrawer: React.FC<DrawerProps> = ({ className = '' }) => {
         <Icon name='moon' />
       ),
       label: darkMode ? 'Light Mode' : 'Dark Mode',
-      onClick: toggleDarkMode,
+      onClick: () => onSettingSelected(toggleDarkMode),
     },
   ];
 

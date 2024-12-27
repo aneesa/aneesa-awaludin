@@ -4,7 +4,8 @@ import clsx from 'clsx'; // Import clsx to easily combine class names
 
 interface TextProps {
   variant?: 'primary' | 'secondary' | 'gray' | 'black'; // variant is optional, defaults to 'primary'
-  size?: 'small' | 'medium' | 'large'; // size is optional, defaults to 'medium'
+  size?: 'small' | 'medium' | 'large' | '2xlarge'; // size is optional, defaults to 'medium'
+  weight?: 'light' | 'normal' | 'medium' | 'bold';
   align?: 'left' | 'right' | 'center' | 'justify';
   children: React.ReactNode;
   className?: string; // Add className prop
@@ -13,10 +14,11 @@ interface TextProps {
 interface ClassNameProps {
   variant: TextProps['variant'];
   size: TextProps['size'];
+  weight: TextProps['weight'];
 }
 
 // getClassName function combines the variant and size classes
-const getClassName = ({ variant, size }: ClassNameProps): string => {
+const getClassName = ({ variant, size, weight }: ClassNameProps): string => {
   let className = '';
 
   // Apply variant-specific classes
@@ -42,8 +44,26 @@ const getClassName = ({ variant, size }: ClassNameProps): string => {
     case 'large':
       className += 'text-lg ';
       break;
+    case '2xlarge':
+      className += 'text-2xl ';
+      break;
     default:
       className += 'text-base '; // default size
+  }
+
+  // Apply weight-specific classes
+  switch (weight) {
+    case 'light':
+      className += 'font-light ';
+      break;
+    case 'medium':
+      className += 'font-medium ';
+      break;
+    case 'bold':
+      className += 'font-bold ';
+      break;
+    default:
+      className += 'font-normal '; // default font weight
   }
 
   return className;
@@ -52,12 +72,13 @@ const getClassName = ({ variant, size }: ClassNameProps): string => {
 const Text: React.FC<TextProps> = ({
   variant = 'primary',
   size = 'medium',
+  weight = 'normal',
   children,
   className = '', // default to empty string if no className is passed
   ...props
 }) => {
   // Combine the calculated className with the custom className passed via props
-  const combinedClassName = clsx(getClassName({ variant, size }), className);
+  const combinedClassName = clsx(getClassName({ variant, size, weight }), className);
 
   return <div className={combinedClassName} {...props}>{children}</div>;
 };

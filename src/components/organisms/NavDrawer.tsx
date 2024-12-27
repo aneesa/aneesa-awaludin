@@ -49,11 +49,16 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
 
   const toggleDrawer = () => setIsOpen(prev => !prev);
 
+  const onItemSelected = (selectedId: string = LIST_ITEMS?.[0]?.id) => {
+    setSelected(selectedId);
+    toggleDrawer();
+  };
+
   return (
     <Div className="relative !p-0">
       {/* Main Drawer */}
       <Div
-        variant="light"
+        variant="transparent"
         className={clsx(
           'fixed top-0 left-0 w-72 h-full p-4',
           isOpen ? 'translate-x-0' : '-translate-x-full',
@@ -62,7 +67,7 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
         )}
         aria-hidden={!isOpen} // Make it inaccessible when closed
       >
-        <Flex direction="col" className="h-full rounded-3xl shadow-lg">
+        <Flex direction="col" className="h-full rounded-3xl shadow-lg md:shadow-none">
           <Flex
             direction="col"
             justify="center"
@@ -75,16 +80,16 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
               variant="avatar"
             />
             <Div
-              onClick={() => setSelected(LIST_ITEMS[0].id)}
+              onClick={() => onItemSelected(LIST_ITEMS[0].id)}
               className="rounded-3xl shadow-2xl py-2 filter brightness-90 cursor-pointer">
-              <Text variant="gray" className="font-bold uppercase">Aneesa Awaludin</Text>
+              <Text variant="gray" weight='bold' className="uppercase">Aneesa Awaludin</Text>
             </Div>
           </Flex>
           <Div className="h-2/3 !p-0">
             <List
               items={LIST_ITEMS.map(item => ({
                 ...item,
-                onClick: () => setSelected(item.id),
+                onClick: () => onItemSelected(item.id),
               }))}
               selected={selected}
               className="!-mr-4"

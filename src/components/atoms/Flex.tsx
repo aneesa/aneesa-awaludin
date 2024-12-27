@@ -5,7 +5,7 @@ import Div from './Div';
 
 interface FlexProps {
   direction?: 'row' | 'col'; // Direction can be row (default) or column
-  variant?: 'primary' | 'accent' | 'light'; // The variant to define the background style
+  variant?: 'primary' | 'accent' | 'light' | 'transparent'; // The variant to define the background style
   justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly'; // Justify content along the main axis
   align?: 'start' | 'center' | 'end' | 'stretch'; // Align items along the cross axis
   wrap?: boolean; // Whether the flex items should wrap

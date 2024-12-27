@@ -3,10 +3,11 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { content } from '../content/nav';
 import Div from '../components/atoms/Div';
 import Flex from '../components/atoms/Flex';
-import Text from '../components/atoms/Text';
 import NavDrawer from '../components/organisms/NavDrawer';
 import SettingDrawer from '../components/organisms/SettingDrawer';
 import Home from '../components/templates/Home';
+import Experience from '../components/templates/Experience';
+import Education from '../components/templates/Education';
 
 interface SectionProps {
   id: string;
@@ -22,11 +23,14 @@ const scrollToSection = (sectionId: string): void => {
 const getSection = ({ id }: SectionProps): React.ReactNode => {
   let section = undefined;
   switch (id) {
-    case 'home':
-      section = <Home />;
+    case 'experience':
+      section = <Experience />;
+      break;
+    case 'education':
+      section = <Education />;
       break;
     default:
-      section = <Text>Section {id}</Text>
+      section = <Home />
   }
 
   return (
@@ -89,9 +93,7 @@ const LandingPage: React.FC = () => {
         {/* This dummy block can be used for visual testing behind the NavDrawer */}
         <Div
           variant="light"
-          className="h-full !p-0 w-0 md:w-72 ml-0 md:-ml-4">
-          *
-        </Div>
+          className="h-full !p-0 w-0 md:w-72 ml-0 md:-ml-4"/>
 
         {/* Main Content - Adjusts depending on screen size */}
         <Div
@@ -100,20 +102,6 @@ const LandingPage: React.FC = () => {
           {/* Content area with scrollable sections */}
           <Div className="h-full flex flex-col !p-0">
             {content?.navs ? content.navs.map(({ id }: SectionProps) => getSection({ id })) : undefined}
-            <Div className="flex-shrink-0 min-h-[calc(100vh-2rem)] snap-start bg-blue-200 !p-0">
-              Section 2 - Very long page
-
-              {/* Generate a long list of content */}
-              {Array.from({ length: 50 }, (_, index) => (
-                <p key={index}>This is a long paragraph #{index + 1}. Repeat this text for testing purposes.</p>
-              ))}
-            </Div>
-            <Div className="flex-shrink-0 min-h-[calc(100vh-2rem)] snap-start bg-blue-300 !p-0">
-              Section 3
-            </Div>
-            <Div className="flex-shrink-0 min-h-[calc(100vh-2rem)] snap-start bg-blue-400 !p-0">
-              Section 4
-            </Div>
           </Div>
         </Div>
       </Flex>

@@ -13,7 +13,7 @@ interface ButtonProps {
 
 const getChildren = ({ children, textVariant, textSize }: { children: React.ReactNode, textVariant?: 'primary' | 'secondary', textSize?: 'small' | 'medium' | 'large' }) => {
   if (typeof children === 'string') {
-    return <Text variant={textVariant} size={textSize} className="uppercase">{children}</Text>; // Wrap the string in the Text component
+    return <Text variant={textVariant} size={textSize} weight='bold' className="uppercase">{children}</Text>; // Wrap the string in the Text component
   }
 
   return children; // Otherwise, return the children as-is
