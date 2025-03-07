@@ -5,37 +5,70 @@ import Text from './Text';
 
 interface ButtonProps {
   children: React.ReactNode; // Label for the button
-  onClick: () => void;
+  variant?: 'primary' | 'accent' | 'light'; // variant is optional, defaults to 'primary'
+  onClick?: () => void;
   className?: string; // Additional custom class names
-  textVariant?: 'primary' | 'secondary'; // Optional text variant for the button label
   textSize?: 'small' | 'medium' | 'large'; // Optional text size
+  type?: 'button' | 'submit' | 'reset'; // Allow passing button type
 }
 
-const getChildren = ({ children, textVariant, textSize }: { children: React.ReactNode, textVariant?: 'primary' | 'secondary', textSize?: 'small' | 'medium' | 'large' }) => {
+interface ClassNameProps {
+  variant: ButtonProps['variant'];
+}
+
+const getClassName = ({ variant }: ClassNameProps): string => {
+  // Apply variant-specific classes
+  switch (variant) {
+    case 'accent':
+      return clsx(
+        'bg-accent dark:bg-darkAccent',
+        'hover:bg-accent dark:hover:bg-darkAccent'
+      )
+    case 'light':
+      return clsx(
+        'bg-backgroundLight dark:bg-backgroundDark',
+        'hover:bg-backgroundLight dark:hover:bg-backgroundDark'
+      )
+    default:
+      return clsx(
+        'bg-primary dark:bg-darkPrimary',
+        'hover:bg-primary dark:hover:bg-darkPrimary',
+      )
+  }
+};
+
+interface TextProps {
+  children: ButtonProps['children'];
+  textSize: ButtonProps['textSize'];
+}
+
+const getChildren = ({ children, textSize }: TextProps) => {
   if (typeof children === 'string') {
-    return <Text variant={textVariant} size={textSize} weight='bold' className="uppercase">{children}</Text>; // Wrap the string in the Text component
+    return <Text variant="primary" size={textSize} weight='bold' className="uppercase">{children}</Text>; // Wrap the string in the Text component
   }
 
   return children; // Otherwise, return the children as-is
 };
 
 const Button: React.FC<ButtonProps> = ({ 
-  children, 
-  onClick, 
-  className = '', 
-  textVariant = 'primary', // Default to 'primary' for text variant
-  textSize = 'medium' // Default to 'medium' for text size
+  children,
+  variant = 'primary', // Default to 'primary' variant
+  onClick = () => undefined, 
+  className = '',
+  textSize = 'medium', // Default to 'medium' for text size
+  type = 'button' // Default to 'button'
 }) => {
   // Use the getChildren function to conditionally render the content
-  const renderedChildren = getChildren({ children, textVariant, textSize });
+  const renderedChildren = getChildren({ children, textSize });
 
   return (
     <button
       onClick={onClick}
+      type={type}
       className={clsx(
-        'btn p-4 bg-primary dark:bg-darkPrimary rounded-full', // default button styles
+        'btn p-4 rounded-full', // default button styles
         'transition-all duration-300 ease-in-out', // transition effect for all properties
-        'hover:bg-primary-dark dark:hover:bg-darkPrimary-dark', // background change on hover
+        getClassName({ variant }),
         'active:scale-95', // slight scale effect when clicked
         'outline-none', // remove default focus outline
         'hover:shadow-lg', // add shadow on hover

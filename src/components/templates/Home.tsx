@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { content } from '../../content/home';
 import Flex from "../atoms/Flex";
 import Text from '../atoms/Text';
 import Image from '../atoms/Image';
-import Button from '../atoms/Button';
+import Modal from '../molecules/Modal';
+import ContactForm from '../molecules/ContactForm';
 
 const Home: React.FC = () => {
+  const [isContactFormOpened, setContactFormOpened] = useState(false);
+
+  const handleFormSubmit = useCallback(
+    (data: { telegramUsername: string; email: string; message: string }) => {
+      // Handle the form submission here (e.g., send the data to a server)
+      console.log('Form submitted with data:', data);
+      setContactFormOpened(false);
+    },
+    []
+  );
+  
   return (
     <Flex variant="light" direction="col" justify="center" align="center" className="h-full !p-0">
       <Flex variant="light" direction="col" justify="center" align="center" className="h-1/2 md:h-2/3 !p-0">
@@ -25,11 +37,9 @@ const Home: React.FC = () => {
         </Text>
         <Text align="center" className="max-w-md">{content.selfDescription}</Text>
         {content?.cta && (
-          <Button
-            onClick={() => console.log('Button onClick')}
-            className="min-w-32">
-            {content.cta}
-          </Button>
+          <Modal buttonTitle={content.cta} open={isContactFormOpened} toggleOpen={setContactFormOpened}>
+            <ContactForm onSubmit={handleFormSubmit} />
+          </Modal>
         )}
       </Flex>
     </Flex>

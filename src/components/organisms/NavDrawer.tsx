@@ -39,7 +39,7 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
     if (prevSelected !== selected && updatedSelected !== selected) {
       onSelected?.(selected);
     }
-  }, [selected, prevSelected]);
+  }, [selected, prevSelected, onSelected, updatedSelected]);
 
   useEffect(() => {
     if (updatedSelected) {

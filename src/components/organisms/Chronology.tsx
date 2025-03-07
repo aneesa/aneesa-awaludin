@@ -27,7 +27,7 @@ const Chronology: React.FC<ChoronologyProps> = ({ events, className }) => {
       justify="center"
       className={className}>
       {events.map((event, index) => (
-        <Flex variant="transparent" className="!p-0">
+        <Flex key={`chronology-${index}`} variant="transparent" className="!p-0">
           <Flex variant="transparent" justify="center" align="center" className="relative w-1/6 !py-0 hidden lg:flex">
             {/* Vertical line */}
             <Div variant="accent" className="!p-0 w-1 h-full" />
@@ -60,8 +60,8 @@ const Chronology: React.FC<ChoronologyProps> = ({ events, className }) => {
                   <Pill variant="purple" size="small">{event.date}</Pill>
                 </Div>
                 <Div variant="transparent" className="!p-0">
-                  {event.descriptions.map(desc => (
-                    <Text size="small" className="pb-1 border-b border-b-primary">{desc}</Text>
+                  {event.descriptions.map((desc, index) => (
+                    <Text key={`chronology-desc-${index}`} size="small" className="pb-1 border-b border-b-primary">{desc}</Text>
                   ))}
                 </Div>
                 
