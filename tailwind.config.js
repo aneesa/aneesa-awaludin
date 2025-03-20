@@ -23,8 +23,9 @@ export default {
         lightText: '#2C3E50',  // Dark gray for text on light background
         lightMutedText: '#7F8C8D',  // Muted gray text for light mode
         darkText: '#ECF0F1',  // Off-white for text on dark background
-        darkMutedText: '#BDC3C7',  // Muted gray text for dark mode
-
+        darkMutedText: '#BDC3C7',  // Muted gray text for dark mode,
+        
+        white: '#FCFCFC',
         error: '#EF4444'
       },
     },

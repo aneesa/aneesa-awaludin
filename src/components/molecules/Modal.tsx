@@ -33,14 +33,15 @@ const Modal: React.FC<ModalProps> = ({
       {/* Modal (Fixed in the center of the screen) */}
       <Div
         className={clsx(
-          'fixed top-0 left-0 right-0 bottom-0 bg-gray-800 dark:bg-gray-800 bg-opacity-75 flex items-center justify-center z-50',
-          open ? 'block' : 'hidden opacity-0',
+          'fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50',
+          '!bg-gray-700 !bg-opacity-75 !dark:bg-gray-900 !dark:bg-opacity-75',
+          open ? 'block' : 'hidden',
           className
         )}
       >
         <Div
           className={clsx(
-            'rounded-lg min-w-96 w-fit',
+            'rounded-lg w-full max-w-lg',
             open ? 'transform scale-100' : 'transform scale-75 transition-transform'
           )}
         >

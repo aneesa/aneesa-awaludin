@@ -48,3 +48,9 @@ export default tseslint.config({
   },
 })
 ```
+
+## My Links
+
+| Name | Link |
+|----------|----------|
+| Telegram bot   | https://dev.to/webcraft-notes/step-by-step-sending-telegram-messages-from-your-website-29i8  |

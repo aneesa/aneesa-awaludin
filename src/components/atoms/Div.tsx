@@ -7,7 +7,7 @@ interface DivProps {
   id?: string;
   variant?: 'primary' | 'accent' | 'light' | 'transparent'; // The variant to define the background style
   children?: React.ReactNode; // Content of the div
-  onClick?: () => void | undefined;
+  onClick?: () => void | undefined | Window | null;
   className?: string; // Additional custom class names for extra styling
 }
 

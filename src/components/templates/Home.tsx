@@ -4,10 +4,12 @@ import Flex from "../atoms/Flex";
 import Text from '../atoms/Text';
 import Image from '../atoms/Image';
 import Modal from '../molecules/Modal';
+import Snackbar from '../molecules/Snackbar';
 import ContactForm from '../molecules/ContactForm';
 
 const Home: React.FC = () => {
   const [isContactFormOpened, setContactFormOpened] = useState(false);
+  const [submitError, setSubmitError] = useState('');
 
   const handleFormSubmit = useCallback(
     (data: { telegramUsername: string; email: string; message: string }) => {
@@ -38,10 +40,16 @@ const Home: React.FC = () => {
         <Text align="center" className="max-w-md">{content.selfDescription}</Text>
         {content?.cta && (
           <Modal buttonTitle={content.cta} open={isContactFormOpened} toggleOpen={setContactFormOpened}>
-            <ContactForm onSubmit={handleFormSubmit} />
+            <ContactForm onSubmit={handleFormSubmit} onError={(error) => setSubmitError(error)}/>
           </Modal>
         )}
       </Flex>
+      {/* Error Snackbar */}
+      <Snackbar
+        open={!!submitError}
+        message={submitError}
+        onClose={() => setSubmitError('')}
+      />
     </Flex>
   )
 }

@@ -11,10 +11,12 @@ import TextAreaInput from '../components/atoms/TextAreaInput';
 import List from '../components/molecules/List';
 import ContactForm from '../components/molecules/ContactForm';
 import Modal from '../components/molecules/Modal';
+import Snackbar from '../components/molecules/Snackbar';
 import SettingDrawer from '../components/organisms/SettingDrawer';
 import Icon from '../components/atoms/Icon';
 import NavDrawer from '../components/organisms/NavDrawer';
 import Chronology from '../components/organisms/Chronology';
+import Loader from '../components/atoms/Loader';
 
 const LIST_ITEMS = [
   { label: 'List Item' },
@@ -89,6 +91,7 @@ const Components: React.FC = () => {
   const [isDisplayNavDrawer, setIsDisplayNavDrawer] = useState(false);
   const [isModalOpened, setModalOpened] = useState(false);
   const [isContactFormOpened, setContactFormOpened] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
 
   const toggleSettingDrawer = () => setIsDisplaySettingDrawer((prev) => !prev);
   const toggleNavDrawer = () => setIsDisplayNavDrawer((prev) => !prev);
@@ -103,10 +106,10 @@ const Components: React.FC = () => {
   );
 
   return (
-    <Flex direction="col" variant="light" justify="between" align="start" gap="medium" className="components">
-      <Flex direction="col" variant="light"  justify="between" align="start" wrap gap="medium">
+    <Flex direction="col" variant="light" justify="between" align="start" gap="medium" className="components w-full">
+      <Flex direction="col" variant="light"  justify="between" align="start" wrap gap="medium" className="w-full">
         <Text size="large">Components</Text>
-        <Flex direction="col" justify="between" align="start" wrap gap="medium">
+        <Flex direction="col" justify="between" align="start" wrap gap="medium" className="w-full">
           {/* Div */}
           <Div> Primary Div variant = 'primary' </Div>
           <Div variant="accent"> Primary Div variant = 'accent' </Div>
@@ -229,11 +232,14 @@ const Components: React.FC = () => {
             />
           </form>
 
+          {/* Loader */}
+          <Loader />
+
         </Flex>
       </Flex>
-      <Flex direction="col" variant="light"  justify="between" align="start" wrap gap="medium">
+      <Flex direction="col" variant="light"  justify="between" align="start" wrap gap="medium" className="w-full">
         <Text size="large">Molecules</Text>
-        <Flex direction="col" justify="between" align="start" wrap gap="medium">
+        <Flex direction="col" justify="between" align="start" wrap gap="medium" className="w-full">
           {/* List */}
           <List items={LIST_ITEMS} />
 
@@ -248,11 +254,22 @@ const Components: React.FC = () => {
           <Modal buttonTitle="Open Contact Form Modal" open={isContactFormOpened} toggleOpen={setContactFormOpened}>
             <ContactForm onSubmit={handleFormSubmit} />
           </Modal>
+
+          {/* Snackbar */}
+          <Button onClick={() => setSnackbarMessage('Snackbar message')}>Show Snackbar</Button>
+
+          <Snackbar
+            open={!!snackbarMessage}
+            message={snackbarMessage}
+            // buttonTitle="Undo"
+            onClose={() => setSnackbarMessage('')}
+            // onAction={() => console.log('undo!')}
+          />
         </Flex>
       </Flex>
-      <Flex direction="col" variant="light" justify="between" align="start" wrap gap="medium">
+      <Flex direction="col" variant="light" justify="between" align="start" wrap gap="medium" className="w-full">
         <Text size="large">Organisms</Text>
-        <Flex direction="col" justify="between" align="start" wrap gap="medium">
+        <Flex direction="col" justify="between" align="start" wrap gap="medium" className="w-full">
           {/* SettingDrawer */}
           <Button onClick={toggleSettingDrawer}>Display Setting Drawer</Button>
           {isDisplaySettingDrawer && (

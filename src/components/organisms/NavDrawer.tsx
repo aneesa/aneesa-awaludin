@@ -80,9 +80,9 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
               variant="avatar"
             />
             <Div
-              onClick={() => onItemSelected(LIST_ITEMS[0].id)}
+              onClick={() => content?.nameLink ? window.open(content?.nameLink, '_blank') : onItemSelected(LIST_ITEMS[0].id)}
               className="rounded-3xl shadow-2xl py-2 filter brightness-90 cursor-pointer">
-              <Text variant="gray" weight='bold' className="uppercase">Aneesa Awaludin</Text>
+              <Text variant="gray" weight='bold' className="uppercase">{content?.name}</Text>
             </Div>
           </Flex>
           <Div className="h-2/3 !p-0">
