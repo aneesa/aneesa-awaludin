@@ -12,9 +12,8 @@ const Home: React.FC = () => {
   const [submitError, setSubmitError] = useState('');
 
   const handleFormSubmit = useCallback(
-    (data: { telegramUsername: string; email: string; message: string }) => {
-      // Handle the form submission here (e.g., send the data to a server)
-      console.log('Form submitted with data:', data);
+    // (data: { telegramUsername: string; email: string; message: string }) => {
+    () => {
       setContactFormOpened(false);
     },
     []

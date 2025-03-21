@@ -81,8 +81,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onSubmit, onError = undefined
           onError?.(SUBMIT_ERROR);
         } else {
   
-          const data = await response.json();
-          console.log('data', data)
+          // const data = await response.json();
   
           onSubmit({
             telegramUsername,
