@@ -9,6 +9,7 @@ import Text from '../atoms/Text';
 import Button from '../atoms/Button';
 import Icon from '../atoms/Icon';
 import Image from '../atoms/Image';
+import Divider from '../atoms/Divider';
 import List from '../molecules/List';
 import AvatarNav from '../../assets/images/Avatar-nav.png';
 
@@ -22,6 +23,11 @@ interface NavDrawerProps {
 const LIST_ITEMS = content?.navs ? content.navs.map((nav) => ({
   ...nav,
   icon: <Icon name={nav.icon} />
+})) : [];
+
+const FOOTER_ICONS = content?.footers ? content.footers.map((footer) => ({
+  ...footer,
+  icon: <Icon name={footer.icon} className='cursor-pointer' onClick={() => { window.open(footer.link, '_blank'); }} />
 })) : [];
 
 const NavDrawer: React.FC<NavDrawerProps> = ({
@@ -62,12 +68,13 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
         className={clsx(
           'fixed top-0 left-0 w-72 h-full p-4',
           isOpen ? 'translate-x-0' : '-translate-x-full',
-          !isMobileView ? 'md:translate-x-0 md:block' : '',
+          !isMobileView ? 'md:translate-x-0 md:block z-10' : '',
           className
         )}
         aria-hidden={!isOpen} // Make it inaccessible when closed
       >
         <Flex direction="col" className="h-full rounded-3xl shadow-lg md:shadow-none">
+          {/* Profile */}
           <Flex
             direction="col"
             justify="center"
@@ -80,11 +87,17 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
               variant="avatar"
             />
             <Div
-              onClick={() => content?.nameLink ? window.open(content?.nameLink, '_blank') : onItemSelected(LIST_ITEMS[0].id)}
-              className="rounded-3xl shadow-2xl py-2 filter brightness-90 cursor-pointer">
+              onClick={content?.nameLink ? (() => window.open(content?.nameLink, '_blank')) : undefined}
+              className={
+                clsx(
+                  "rounded-3xl shadow-2xl py-2 filter brightness-90",
+                  content?.nameLink ? 'cursor-pointer' : 'cursor-default'
+                )}
+              >
               <Text variant="gray" weight='bold' className="uppercase">{content?.name}</Text>
             </Div>
           </Flex>
+          {/* Navs */}
           <Div className="h-2/3 !p-0">
             <List
               items={LIST_ITEMS.map(item => ({
@@ -95,6 +108,15 @@ const NavDrawer: React.FC<NavDrawerProps> = ({
               className="!-mr-4"
             />
           </Div>
+          {/* Footers */}
+          {FOOTER_ICONS?.length && (
+            <>
+              <Divider variant="accent" animated />
+              <Flex justify="center" align="center" wrap gap="medium">
+                {FOOTER_ICONS.map((footer) => footer.icon)}
+              </Flex>
+            </>
+          )}
         </Flex>
       </Div>
 

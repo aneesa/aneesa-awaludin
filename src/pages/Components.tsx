@@ -5,18 +5,19 @@ import Flex from '../components/atoms/Flex';
 import Text from '../components/atoms/Text';
 import Button from '../components/atoms/Button';
 import Image from '../components/atoms/Image';
+import Icon from '../components/atoms/Icon';
 import Pill from '../components/atoms/Pill';
 import TextInput from '../components/atoms/TextInput';
 import TextAreaInput from '../components/atoms/TextAreaInput';
+import Loader from '../components/atoms/Loader';
+import Divider from '../components/atoms/Divider';
 import List from '../components/molecules/List';
 import ContactForm from '../components/molecules/ContactForm';
 import Modal from '../components/molecules/Modal';
 import Snackbar from '../components/molecules/Snackbar';
 import SettingDrawer from '../components/organisms/SettingDrawer';
-import Icon from '../components/atoms/Icon';
 import NavDrawer from '../components/organisms/NavDrawer';
 import Chronology from '../components/organisms/Chronology';
-import Loader from '../components/atoms/Loader';
 
 const LIST_ITEMS = [
   { label: 'List Item' },
@@ -177,6 +178,23 @@ const Components: React.FC = () => {
             variant="avatar"
           />
 
+          {/* Icons */}
+          <Flex justify="between" align="center" wrap gap="medium">
+            <Icon name="home" />
+            <Icon name="briefcase" />
+            <Icon name="academic" />
+            <Icon name="sun" />
+            <Icon name="moon" />
+            <Icon name="menu" />
+            <Icon name="close" />
+            <Icon name="user" />
+            <Icon name="logout" />
+            <Icon name="facebook" />
+            <Icon name="linkedin" />
+            <Icon name="pdf" />
+            <Icon name="setting" />
+          </Flex>
+
           {/* Pill */}
           <Pill variant="blue" size="medium" weight="bold">
             Blue Pill
@@ -231,6 +249,10 @@ const Components: React.FC = () => {
               className="py-4!"
             />
           </form>
+
+          {/* Divider */}
+          <Divider variant="accent" animated />
+          <Divider variant="light" />
 
           {/* Loader */}
           <Loader />
