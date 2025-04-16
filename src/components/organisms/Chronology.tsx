@@ -56,7 +56,7 @@ const Chronology: React.FC<ChoronologyProps> = ({ events, className }) => {
               
               <Flex variant="transparent" gap="medium" className="!p-0 w-full md:w-2/3 flex-col">
                 <Div variant="transparent" className="!p-0">
-                  <Text size="large" weight='bold'>{event.title}</Text>
+                  <Text as="h2" size="large" weight='bold'>{event.title}</Text>
                   <Pill variant="purple" size="small">{event.date}</Pill>
                 </Div>
                 <Div variant="transparent" className="!p-0">

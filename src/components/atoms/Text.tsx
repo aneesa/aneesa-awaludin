@@ -2,13 +2,16 @@
 import React from 'react';
 import clsx from 'clsx'; // Import clsx to easily combine class names
 
-interface TextProps {
-  variant?: 'primary' | 'secondary' | 'gray' | 'black' | 'error'; // variant is optional, defaults to 'primary'
-  size?: 'small' | 'medium' | 'large' | '2xlarge'; // size is optional, defaults to 'medium'
+type TextTag = 'p' | 'span' | 'strong' | 'em' | 'label' | 'blockquote' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+interface TextProps extends React.HTMLAttributes<HTMLElement> {
+  as?: TextTag;
+  variant?: 'primary' | 'secondary' | 'gray' | 'black' | 'error';
+  size?: 'small' | 'medium' | 'large' | '2xlarge';
   weight?: 'light' | 'normal' | 'medium' | 'bold';
   align?: 'left' | 'right' | 'center' | 'justify';
   children: React.ReactNode;
-  className?: string; // Add className prop
+  className?: string;
 }
 
 interface ClassNameProps {
@@ -73,6 +76,7 @@ const getClassName = ({ variant, size, weight }: ClassNameProps): string => {
 };
 
 const Text: React.FC<TextProps> = ({
+  as = 'div',
   variant = 'primary',
   size = 'medium',
   weight = 'normal',
@@ -80,10 +84,13 @@ const Text: React.FC<TextProps> = ({
   className = '', // default to empty string if no className is passed
   ...props
 }) => {
+  const Tag = as;
+
   // Combine the calculated className with the custom className passed via props
   const combinedClassName = clsx(getClassName({ variant, size, weight }), className);
 
-  return <div className={combinedClassName} {...props}>{children}</div>;
+  // @ts-expect-error: Dynamic tag typing conflicts with strict JSX element types
+  return <Tag className={combinedClassName} {...props}>{children}</Tag>;
 };
 
 export default Text;

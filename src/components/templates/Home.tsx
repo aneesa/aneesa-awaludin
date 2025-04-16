@@ -33,10 +33,10 @@ const Home: React.FC = () => {
         <Text size="large" align="center" className="font-light uppercase">
           {content.greeting}
         </Text>
-        <Text variant="black" weight='bold' align="center" className="!text-3xl uppercase w-40 md:w-fit">
+        <Text as="h1" variant="black" weight='bold' align="center" className="!text-3xl uppercase w-40 md:w-fit">
           {content.greetingName}
         </Text>
-        <Text align="center" className="max-w-md">{content.selfDescription}</Text>
+        <Text as="p" align="center" className="max-w-md">{content.selfDescription}</Text>
         {content?.cta && (
           <Modal buttonTitle={content.cta} open={isContactFormOpened} toggleOpen={setContactFormOpened}>
             <ContactForm onSubmit={handleFormSubmit} onError={(error) => setSubmitError(error)}/>

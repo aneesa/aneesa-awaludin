@@ -18,7 +18,7 @@ export const content = {
       leftTitle: 'UNIVERSITY OF WASHINGTON',
       leftDescription: 'Seattle, WA, USA',
       date: '2003 - 2007',
-      title: 'Senior Developer',
+      title: 'BSc, COMPUTER SCIENCE',
       descriptions: [
         'CGPA: 3.54/4.00',
         'Received Dean\'s List Award: Fall 2003, Spring 2004, Spring 2006',
