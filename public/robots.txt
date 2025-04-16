@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aneesa.github.io/aneesa-awaludin/sitemap.xml
